@@ -1,0 +1,23 @@
+name: soulcrack_bot.py
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build_and_run:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        job: [1]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: package runing...
+      run: pip install python-telegram-bot>=20.0 requests>=2.25.0
+      
+    - name: Run bot.py
+      run: python3 bot.py
